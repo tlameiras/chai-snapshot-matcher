@@ -1,0 +1,28 @@
+{
+  "name": "chai-snapshot",
+  "version": "1.0.0",
+  "description": "Snapshot package designed for Mocha testing, based on chai assertions",
+  "main": "./src/index.js",
+  "scripts": {},
+  "keywords": [
+    "chai",
+    "mocha",
+    "snapshot",
+    "test",
+    "regression"
+  ],
+  "author": "Tiago Lameiras <tiagoplameiras@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tlameiras/chai-snapshot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tlameiras/chai-snapshot/issues"
+  },
+  "homepage": "https://github.com/tlameiras/chai-snapshot#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^7.1.1"
+  }
+}
