@@ -1,5 +1,5 @@
 {
-  "name": "chai-snapshot",
+  "name": "chai-snapshot-matcher",
   "version": "1.0.0",
   "description": "Snapshot package designed for Mocha testing, based on chai assertions",
   "main": "./src/index.js",
@@ -9,7 +9,8 @@
     "mocha",
     "snapshot",
     "test",
-    "regression"
+    "regression",
+    "matcher"
   ],
   "author": "Tiago Lameiras <tiagoplameiras@gmail.com>",
   "license": "MIT",

@@ -1,1 +1,1 @@
-# chai-snapshot
+# chai-snapshot-matcher
