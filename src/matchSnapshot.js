@@ -2,7 +2,7 @@ const path = require("path");
 const snapshotDirConstructor = require("./snapshotDirConstructor");
 const testNameConstructor = require("./testNameConstructor");
 const getExistingSnaps = require("./getExistingSnaps");
-
+const writeSnapshots = require("./writeSnapshots");
 
 const snapshotExtension = ".snap";
 const snapshotsFolder = "__snapshots__";
