@@ -1,11 +1,11 @@
 const path = require("path");
+const { expect } = require("chai");
 const snapshotDirConstructor = require("./snapshotDirConstructor");
 const testNameConstructor = require("./testNameConstructor");
 const getExistingSnaps = require("./getExistingSnaps");
 const writeSnapshots = require("./writeSnapshots");
 
 const snapshotExtension = ".snap";
-const snapshotsFolder = "__snapshots__";
 const updateSnapshots = process.argv.includes("--update");
 
 const matchSnapshot = (value, context, hint, name, snapshotPath, additionalFolder) => {
@@ -17,7 +17,7 @@ const matchSnapshot = (value, context, hint, name, snapshotPath, additionalFolde
   const snaps = getExistingSnaps(snapshotDir, snapshotFilePath);
 
   if (Object.hasOwnProperty.call(snaps, testName) && !updateSnapshots) {
-    chai.expect(value).to.eql(snaps[testName]);
+    expect(value).to.eql(snaps[testName]);
   } else {
     snaps[testName] = value;
     writeSnapshots(snaps, snapshotFilePath);

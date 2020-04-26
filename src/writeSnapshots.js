@@ -12,4 +12,4 @@ const writeSnapshots = (snaps, snapshotFilePath) => {
   fs.writeFileSync(snapshotFilePath, snapsFileContent);
 };
 
-module.exports = writeSnapshots();
+module.exports = writeSnapshots;
