@@ -8,8 +8,8 @@ chai.util.addMethod(chai.Assertion.prototype, "matchSnapshot", function (ctx, hi
 
 chai.util.addMethod(chai.Assertion.prototype, "matchSpecificSnapshot", function (
   ctx,
-  { snapshotPath = "", folder = "", name = "", hint = "" }
+  { hint = "", name = "", folder = "", snapshotPath = "" }
 ) {
   const obj = chai.util.flag(this, "object");
-  matchSnapshot(obj, ctx, hint, name, snapshotPath, folder);
+  matchSnapshot(obj, ctx, hint, name, folder, snapshotPath);
 });
