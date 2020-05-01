@@ -1,7 +1,7 @@
 {
   "name": "chai-snapshot-matcher",
-  "version": "1.0.5",
-  "description": "Snapshot package designed for Mocha testing, based on chai assertions",
+  "version": "1.0.6",
+  "description": "A Snapshot testing library designed for Mocha and Chai users",
   "main": "./src/index.js",
   "scripts": {
     "test": "mocha 'spec/**/*.test.js' --timeout 5000"
