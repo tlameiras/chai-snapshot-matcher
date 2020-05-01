@@ -1,6 +1,6 @@
 {
   "name": "chai-snapshot-matcher",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Snapshot package designed for Mocha testing, based on chai assertions",
   "main": "./src/index.js",
   "scripts": {
