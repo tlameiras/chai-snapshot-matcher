@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="https://github.com/tlameiras/chai-snapshot-matcher/blob/master/logo/logo.png" alt="chai-snapshot-matcher"/>
+  <img src="https://github.com/tlameiras/chai-snapshot-matcher/blob/master/logo/logo.png?raw=true" alt="chai-snapshot-matcher"/>
 </h1>
 
 chai-snapshot-matcher is a [node](https://nodejs.org/en/) library developed to offer the [jest](https://jestjs.io/) snapshot testing features to [mocha](https://mochajs.org/) and [chai](https://www.chaijs.com/) users.
@@ -31,7 +31,7 @@ There are 2 ways to run chai-snapshot-matcher in your test script:
 - Import the chai-snapshot-matcher package on the tests scripts where the `matchSnapshot` or `matchSpecificSnapshot` will be used:
 
 ```js
-require('chai-snapshot-matcher);
+require("chai-snapshot-matcher");
 ```
 
 - Add the `--require` argument to your test script/command:
