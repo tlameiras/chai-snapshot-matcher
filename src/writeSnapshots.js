@@ -9,6 +9,7 @@ const writeSnapshots = (snaps, snapshotFilePath) => {
       const snapshot = JSON.stringify(value, null, '\t')
         .replace(/\\n/g, '\n')
         .replace(/`/g, '\\`')
+        .replace(/\${/g, '\\${')
         .replace(/(^")|("$)/g, '`');
 
       return `${prev}exports["${name}"] = ${snapshot};\n\n`;
