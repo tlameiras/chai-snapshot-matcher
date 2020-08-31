@@ -129,21 +129,21 @@ describe("chai-snapshot-matcher", function () {
 - _path_: `./tests/__snapshots__/myFirstSnapshotTest.snap`
 
 ```
-exports["chai-snapshot-matcher - matchSpecificSnapshot - new features examples (hint)"] = "Tiago";
+exports["chai-snapshot-matcher - matchSpecificSnapshot - new features examples (hint)"] = "Hello World";
 
-exports["snapshot with a specific name"] = "Tiago";
+exports["snapshot with a specific name"] = "Hello World";
 ```
 
 - _path_: `./tests/__snapshots__/Examples/myFirstSnapshotTest.snap`
 
 ```
-exports["chai-snapshot-matcher - matchSpecificSnapshot - new features examples"] = "Tiago";
+exports["chai-snapshot-matcher - matchSpecificSnapshot - new features examples"] = "Hello World";
 ```
 
 - _path_: `/Users/my.user/Downloads/MySnapshots/myFirstSnapshotTest.snap`
 
 ```
-exports["chai-snapshot-matcher - matchSpecificSnapshot - new features examples"] = "Tiago";
+exports["chai-snapshot-matcher - matchSpecificSnapshot - new features examples"] = "Hello World";
 ```
 
 # Update Snapshots
