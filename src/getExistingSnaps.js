@@ -1,5 +1,5 @@
-const fs = require("fs");
-const checkCI = require("./checkCI");
+const fs = require('fs');
+const checkCI = require('./checkCI');
 
 const getExistingSnaps = (snapshotDir, snapshotFilePath) => {
   let snaps = {};
