@@ -4,7 +4,9 @@
   "description": "A Snapshot testing library designed for Mocha and Chai users",
   "main": "./src/index.js",
   "scripts": {
-    "test": "mocha 'spec/**/*.test.js' --timeout 5000"
+    "test": "mocha 'test/**/*.test.js' --timeout 5000",
+    "unit-tests": "mocha 'test/unit/*.test.js' --timeout 5000",
+    "smoke-tests": "mocha 'test/smokes/*.test.js' --timeout 5000"
   },
   "keywords": [
     "chai",
