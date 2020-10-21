@@ -1,0 +1,5 @@
+exports["snapshot (1)"] = 1;
+
+exports["snapshot (2)"] = true;
+
+exports["snapshot (3)"] = "Hello World!";
