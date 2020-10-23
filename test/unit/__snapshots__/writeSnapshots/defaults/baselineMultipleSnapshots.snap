@@ -1,0 +1,15 @@
+exports["first snapshot"] = {
+	"a": {
+		"b": 1,
+		"c": 2
+	},
+	"d": 3
+};
+
+exports["second snapshot"] = [
+  1,
+  2,
+  3,
+  4,
+  5
+];
