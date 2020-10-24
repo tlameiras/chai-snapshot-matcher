@@ -1,0 +1,7 @@
+exports["single snapshot"] = {
+	"a": {
+		"b": 1,
+		"c": 2
+	},
+	"d": 3
+};
