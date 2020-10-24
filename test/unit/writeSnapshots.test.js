@@ -7,7 +7,7 @@ ENV_VARS = process.argv;
 
 currentPath = __dirname;
 
-describe.only('writeSnapshots', function () {
+describe('writeSnapshots', function () {
   before(function () {
     this.folderPath = path.join(currentPath, '__snapshots__', 'writeSnapshots');
     this.defaultsFolderPath = path.join(this.folderPath, 'defaults');
