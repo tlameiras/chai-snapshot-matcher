@@ -1,11 +1,11 @@
-const getExistingSnaps = require('../../src/getExistingSnaps');
 const { expect } = require('chai');
 const path = require('path');
 const fs = require('fs');
+const getExistingSnaps = require('../../src/getExistingSnaps');
 
-ENV_VARS = process.argv;
+const ENV_VARS = process.argv;
 
-currentPath = __dirname;
+const currentPath = __dirname;
 
 describe('getExistingSnaps', function () {
   describe('when the snapshotDir and the snapshotFilePath point to a snapshot file', function () {

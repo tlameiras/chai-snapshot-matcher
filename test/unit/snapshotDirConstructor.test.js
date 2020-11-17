@@ -1,5 +1,5 @@
-const snapshotDirConstructor = require('../../src/snapshotDirConstructor');
 const { expect } = require('chai');
+const snapshotDirConstructor = require('../../src/snapshotDirConstructor');
 
 describe('snapshotDirConstructor', function () {
   describe('when the snapshotPath is provided', function () {
