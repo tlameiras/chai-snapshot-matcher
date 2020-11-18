@@ -1,5 +1,5 @@
-const testNameConstructor = require('../../src/testNameConstructor');
 const { expect } = require('chai');
+const testNameConstructor = require('../../src/testNameConstructor');
 
 describe('testNameConstructor', function () {
   describe('when the newName is provided', function () {

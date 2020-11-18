@@ -1,11 +1,11 @@
-const writeSnapshots = require('../../src/writeSnapshots');
 const { expect } = require('chai');
 const path = require('path');
 const fs = require('fs');
+const writeSnapshots = require('../../src/writeSnapshots');
 
-ENV_VARS = process.argv;
+const ENV_VARS = process.argv;
 
-currentPath = __dirname;
+const currentPath = __dirname;
 
 describe('writeSnapshots', function () {
   before(function () {
@@ -157,7 +157,7 @@ describe('writeSnapshots', function () {
 
       process.argv = [...process.argv, '--ci'];
 
-      snaps = { 'snapshot title': 'Hello World!' };
+      const snaps = { 'snapshot title': 'Hello World!' };
 
       expect(() => {
         writeSnapshots(snaps, filePath);

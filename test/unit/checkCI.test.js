@@ -1,7 +1,7 @@
-const checkCI = require('../../src/checkCI');
 const { expect } = require('chai');
+const checkCI = require('../../src/checkCI');
 
-ENV_VARS = process.argv;
+const ENV_VARS = process.argv;
 
 describe('checkCI', function () {
   describe('when the --ci flag is not passed as environment variable', function () {
