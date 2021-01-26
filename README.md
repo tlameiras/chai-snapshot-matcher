@@ -31,7 +31,7 @@ There are 2 ways to run chai-snapshot-matcher in your test script:
 - Import the chai-snapshot-matcher package on the tests scripts where the `matchSnapshot` or `matchSpecificSnapshot` will be used:
 
 ```js
-require("chai-snapshot-matcher");
+require('chai-snapshot-matcher');
 ```
 
 - Add the `--require` argument to your test script/command:
@@ -42,7 +42,7 @@ mocha --require chai-snapshot-matcher
 
 ## matchSnapshot
 
-### .matchSnapchot(this, [hint])
+### .matchSnapchot(this, { [hint] })
 
 matchSnapshot is a customized chai matcher that creates a snapshot file on the first test run. On subsequent test runs, chai will compare the object that is being expected with the previous snapshot. If they match, the test will pass. If they don't match, the test will fail. If tests are failing due to a change decision implementation (and not a bug), snapshots needs to be updated (check how on **Update Snapshots** chapter).
 
@@ -62,14 +62,14 @@ matchSnapshot is a customized chai matcher that creates a snapshot file on the f
 
 ```js
 // myFirstSnapshotTest.test.js
-describe("chai-snapshot-matcher", function () {
-  describe("- matchSnapshot -", function () {
-    it("check name", function () {
-      const name = "Tiago";
+describe('chai-snapshot-matcher', function () {
+  describe('- matchSnapshot -', function () {
+    it('check name', function () {
+      const name = 'Tiago';
 
       expect(name).to.matchSnapshot(this);
       // using hint argument
-      expect(typeof name).to.matchSnapshot(this, "(var type)");
+      expect(typeof name).to.matchSnapshot(this, { hint: '(var type)' });
     });
   });
 });
@@ -85,7 +85,7 @@ exports["chai-snapshot-matcher - matchSapshot - check name (var type)"] = "strin
 
 ## matchSpecificSnapshot
 
-### .matchSnapchot(this, {[hint], [name], [folder], [snapshotPath]})
+### .matchSnapchot(this, { [hint], [name], [folder], [snapshotPath] })
 
 matchSpecificSnapshot is a customized chai matcher that works just like the **matchSnapshot**, but includes a set of new features, offered by 3 new optional arguments (each of which are explained bellow): _name_, _folder_, _snapshotPath_.
 
@@ -106,19 +106,19 @@ matchSpecificSnapshot is a customized chai matcher that works just like the **ma
 **Test file:** (_path_: `./tests/myFirstSnapshotTest.test.js`)
 
 ```js
-describe("chai-snapshot-matcher", function () {
-  describe("- matchSpecificSnapshot -", function () {
-    it("new features examples", function () {
-      const example = "Hello World";
+describe('chai-snapshot-matcher', function () {
+  describe('- matchSpecificSnapshot -', function () {
+    it('new features examples', function () {
+      const example = 'Hello World';
 
       // using hint argument
-      expect(example).to.matchSpecificSnapshot(this, { hint: "(hint)" });
+      expect(example).to.matchSpecificSnapshot(this, { hint: '(hint)' });
       // using name argument
-      expect(example).to.matchSpecificSnapshot(this, { name: "snapshot with a specific name" });
+      expect(example).to.matchSpecificSnapshot(this, { name: 'snapshot with a specific name' });
       // using folder argument
-      expect(example).to.matchSpecificSnapshot(this, { folder: "Examples" });
+      expect(example).to.matchSpecificSnapshot(this, { folder: 'Examples' });
       // using snapshotPath argument
-      expect(example).to.matchSpecificSnapshot(this, { snapshotPath: "/Users/my.user/Downloads/MySnapshots/" });
+      expect(example).to.matchSpecificSnapshot(this, { snapshotPath: '/Users/my.user/Downloads/MySnapshots/' });
     });
   });
 });
