@@ -42,14 +42,14 @@ describe('chai-snapshot-matcher', function () {
     it('use the hint attribute to customize the snapshot title', function () {
       const testVar = 'custom name';
 
-      expect(testVar).to.matchSnapshot(this, '(go check the __snapshots__ folder)');
+      expect(testVar).to.matchSnapshot(this, { hint: '(go check the __snapshots__ folder)' });
     });
 
     it('use the hint attribute to have more than one matchSnapshot per it', function () {
       const testVar = 10;
 
-      expect(testVar).to.matchSnapshot(this, '(value)');
-      expect(typeof testVar).to.matchSnapshot(this, '(type)');
+      expect(testVar).to.matchSnapshot(this, { hint: '(value)' });
+      expect(typeof testVar).to.matchSnapshot(this, { hint: '(type)' });
     });
   });
 });
