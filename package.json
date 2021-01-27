@@ -39,6 +39,7 @@
     "prettier": "^2.1.2"
   },
   "dependencies": {
-    "chai": "^4.2.0"
+    "chai": "^4.2.0",
+    "lodash": "^4.17.20"
   }
 }
