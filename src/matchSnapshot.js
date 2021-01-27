@@ -4,11 +4,13 @@ const snapshotDirConstructor = require('./snapshotDirConstructor');
 const testNameConstructor = require('./testNameConstructor');
 const getExistingSnaps = require('./getExistingSnaps');
 const writeSnapshots = require('./writeSnapshots');
+const removeIgnoredFields = require('./removeIgnoredFields');
 
 const snapshotExtension = '.snap';
 const updateSnapshots = process.argv.includes('--update');
 
-const matchSnapshot = (value, context, { hint = '', name = '', folder = '', snapshotPath = '' }) => {
+const matchSnapshot = (obj, context, { hint = '', name = '', folder = '', snapshotPath = '', ignore = '' }) => {
+  const value = removeIgnoredFields(obj, ignore);
   const testDir = path.dirname(context._runnable.file);
   const testFileName = path.basename(context._runnable.file).split('.test.js')[0];
   const snapshotDir = snapshotDirConstructor(testDir, folder, snapshotPath);
