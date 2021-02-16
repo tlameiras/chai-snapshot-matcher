@@ -1,2 +1,0 @@
-exports["chai-snapshot-matcher - matchSpecificSnapshot - use matchSpecificSnapshot to save the snapshots in nested folders (util to execute the same tests in different environments)"] = "prd environment";
-
