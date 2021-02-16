@@ -5,8 +5,3 @@ chai.util.addMethod(chai.Assertion.prototype, 'matchSnapshot', function (ctx, pr
   const obj = chai.util.flag(this, 'object');
   matchSnapshot(obj, ctx, properties);
 });
-
-chai.util.addMethod(chai.Assertion.prototype, 'matchSpecificSnapshot', function (ctx, properties = {}) {
-  const obj = chai.util.flag(this, 'object');
-  matchSnapshot(obj, ctx, properties);
-});
