@@ -40,9 +40,7 @@ require('chai-snapshot-matcher');
 mocha --require chai-snapshot-matcher
 ```
 
-## matchSnapshot
-
-### .matchSnapchot(this, { [hint] })
+## .matchSnapchot(this [, config])
 
 matchSnapshot is a customized chai matcher that creates a snapshot file on the first test run. On subsequent test runs, chai will compare the object that is being expected with the previous snapshot. If they match, the test will pass. If they don't match, the test will fail. If tests are failing due to a change decision implementation (and not a bug), snapshots needs to be updated (check how on **Update Snapshots** chapter).
 
@@ -52,11 +50,8 @@ matchSnapshot is a customized chai matcher that creates a snapshot file on the f
 - the snapshot file will use the test file name but the extension `.test.js` will be replaced by `.snap` (e.g. post-request.test.js will originate the post-request.snap).
 - all snapshots that belong to the same test file will be saved in the same snapshot file.
 - by default, the snapshot and test names will be the same, i. e. the joining of the `it` and all `describe` parent titles.
-- using the _hint_ `optional` argument, the snapshot name can be customized with including a hint at the end.
 
-> **NOTE:** Two snaps with the same name within the same snapshot file cannot exist. Therefore, if one wants to use the **matchSnapshot** twice inside a single `it` the hint argument will have to be used.
-
-### Usage
+#### Example
 
 **Test file:** (_path_: `./tests/myFirstSnapshotTest.test.js`)
 
@@ -64,12 +59,10 @@ matchSnapshot is a customized chai matcher that creates a snapshot file on the f
 // myFirstSnapshotTest.test.js
 describe('chai-snapshot-matcher', function () {
   describe('- matchSnapshot -', function () {
-    it('check name', function () {
-      const name = 'Tiago';
+    it('check string', function () {
+      const packageName = 'chai-snapshot-matcher';
 
       expect(name).to.matchSnapshot(this);
-      // using hint argument
-      expect(typeof name).to.matchSnapshot(this, { hint: '(var type)' });
     });
   });
 });
@@ -78,47 +71,50 @@ describe('chai-snapshot-matcher', function () {
 **Snapshot file:** (_path_: `./tests/__snapshots__/myFirstSnapshotTest.snap`)
 
 ```
-exports["chai-snapshot-matcher - matchSapshot - check name"] = "Tiago";
-
-exports["chai-snapshot-matcher - matchSapshot - check name (var type)"] = "string";
+exports["chai-snapshot-matcher - matchSapshot - check string"] = "chai-snapshot-matcher";
 ```
 
-## matchSpecificSnapshot
+### Aditional Features
 
-### .matchSnapchot(this, { [hint], [name], [folder], [snapshotPath] })
+Extra functionalities are available through the _config_ attribute (`optional` argument). The following table describes each field of the _config_ attribute:
 
-matchSpecificSnapshot is a customized chai matcher that works just like the **matchSnapshot**, but includes a set of new features, offered by 3 new optional arguments (each of which are explained bellow): _name_, _folder_, _snapshotPath_.
+|     Field      |  Type  |                                                                                                               Description                                                                                                               |
+| :------------: | :----: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|     `hint`     | String |                                                                                       customize the snapshot name by including a hint at the end                                                                                        |
+|     `name`     | String |                                                                    rename a snapshot by giving it a completely new name (`it` and `describe` titles will be ignored)                                                                    |
+|    `folder`    | String | change the path where the snapshot file is saved. Instead of saving all the snapshots inside the `__snapshots__` folder, one can organize the snapshots files inside nested folders. This could be useful for multi environment testing |
+| `snapshotPath` | String |                                                set a completely new path (inside or outside the repositiory) to the snapshot files. The \_snapshotPath_only works with the absolute path                                                |
+|    `ignore`    | Array  |                                        ignore a certain set of fields from an object. This can be useful for checking an entire object and ignoring only the mutable (e.g. time-changing) fields                                        |
 
-### New Features
+> **NOTE:** > \- _hint_ attribute will be ignored if the _name_ attribute is used.
+> \- _folder_ attribute will be ignored if the _snapshotPath_ attribute is used.
+> \- Two snaps with the same name within the same snapshot file cannot exist. Therefore, if one wants to use the **matchSnapshot** twice inside a single `it` the _hint_, _name_, _folder_ or _snapshotPath_ argument will have to be used.
 
-- just as with **matchSnapshot**, the _hint_ `optional` argument can be used to customize the snapshot name by adding a hint at the end of its default name.
-- the _name_ `optional` argument can be used to set a completelly new name to a snapshot (`it` and `describe` titles will be ignored).
-- the _folder_ `optional` argument can be used to change the path where the snapshot file is saved. Instead of saving all the snapshots inside the `__snapshots__` folder, one can organize the snapshots files inside nested folders. This could be useful for multi environment testing (find a simple example [here](https://github.com/tlameiras/chai-snapshot-matcher-boilerplate/blob/fe0a30bed09849f82396348ac226e9f5c259e222/spec/matchSpecificSnapshot.test.js#L34)).
-- the _snapshotPath_ `optional` argument can be used to set a completelly new path (inside or outside the repositiory) to the snapshot files. To define a _snapshotPath_, the absolute path will need to be provided (example [here](https://github.com/tlameiras/chai-snapshot-matcher-boilerplate/blob/fe0a30bed09849f82396348ac226e9f5c259e222/spec/matchSpecificSnapshot.test.js#L52)).
-- More than one `optional` argument can be combined at the same time.
+#### Example
 
-> **NOTE:** _hint_ attribute will be ignored if the _name_ attribute is used.
-
-> **NOTE:** _folder_ attribute will be ignored if the _snapshotPath_ attribute is used.
-
-### Usage
-
-**Test file:** (_path_: `./tests/myFirstSnapshotTest.test.js`)
+**Test file:** (_path_: `./tests/mySecondSnapshotTest.test.js`)
 
 ```js
 describe('chai-snapshot-matcher', function () {
-  describe('- matchSpecificSnapshot -', function () {
+  describe('- matchSnapshot (features) -', function () {
     it('new features examples', function () {
-      const example = 'Hello World';
+      const stringExample = 'Hello World';
+
+      const objectExample = {
+        id: '73as268f90sn.a4fju2',
+        current_date: '2021-02-15T18:58Z',
+      };
 
       // using hint argument
-      expect(example).to.matchSpecificSnapshot(this, { hint: '(hint)' });
+      expect(example).to.matchSnapshot(this, { hint: '(hint)' });
       // using name argument
-      expect(example).to.matchSpecificSnapshot(this, { name: 'snapshot with a specific name' });
+      expect(example).to.matchSnapshot(this, { name: 'snapshot with a specific name' });
       // using folder argument
-      expect(example).to.matchSpecificSnapshot(this, { folder: 'Examples' });
-      // using snapshotPath argument
-      expect(example).to.matchSpecificSnapshot(this, { snapshotPath: '/Users/my.user/Downloads/MySnapshots/' });
+      expect(example).to.matchSnapshot(this, { folder: 'Examples' });
+      // using snapshotPath argumentc
+      expect(example).to.matchSnapshot(this, { snapshotPath: '/Users/my.user/Downloads/MySnapshots/' });
+      // using ignore argument
+      expect(example).to.matchSnapshot(this, { ignore: ['current_date'] });
     });
   });
 });
@@ -126,24 +122,26 @@ describe('chai-snapshot-matcher', function () {
 
 **Snapshot files:**
 
-- _path_: `./tests/__snapshots__/myFirstSnapshotTest.snap`
+- _path_: `./tests/__snapshots__/mySecondSnapshotTest.snap`
 
 ```
-exports["chai-snapshot-matcher - matchSpecificSnapshot - new features examples (hint)"] = "Hello World";
+exports["chai-snapshot-matcher - matchSnapshot (features) - new features examples (hint)"] = "Hello World";
 
 exports["snapshot with a specific name"] = "Hello World";
+
+exports["chai-snapshot-matcher - matchSnapshot (features) - new features examples"] = { "id": "73as268f90sn.a4fju2"}
 ```
 
-- _path_: `./tests/__snapshots__/Examples/myFirstSnapshotTest.snap`
+- _path_: `./tests/__snapshots__/Examples/mySecondSnapshotTest.snap`
 
 ```
-exports["chai-snapshot-matcher - matchSpecificSnapshot - new features examples"] = "Hello World";
+exports["chai-snapshot-matcher - matchSnapshot (features) - new features examples"] = "Hello World";
 ```
 
-- _path_: `/Users/my.user/Downloads/MySnapshots/myFirstSnapshotTest.snap`
+- _path_: `/Users/my.user/Downloads/MySnapshots/mySecondSnapshotTest.snap`
 
 ```
-exports["chai-snapshot-matcher - matchSpecificSnapshot - new features examples"] = "Hello World";
+exports["chai-snapshot-matcher - matchSnapshot (features) - new features examples"] = "Hello World";
 ```
 
 # Update Snapshots
@@ -154,9 +152,9 @@ Add the `--update` argument when running mocha to update the snapshots of the te
 mocha --update
 ```
 
-> **NOTE:** Tests or snapshots that were not executed will not be updated.
-
-> **NOTE:** If a test or snapshot name has been changed, a new snapshot will be created. When running the tests using the `--update` flag, only the new ones will be updated.
+> **NOTE:**
+> \- Tests or snapshots that were not executed will not be updated.
+> \- If a test or snapshot name has been changed, a new snapshot will be created. When running the tests using the `--update` flag, only the new ones will be updated.
 
 # Recommendations
 
