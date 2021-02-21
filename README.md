@@ -86,8 +86,12 @@ Extra functionalities are available through the _config_ attribute (`optional` a
 | `snapshotPath` | String |                                                set a completely new path (inside or outside the repositiory) to the snapshot files. The \_snapshotPath_only works with the absolute path                                                |
 |    `ignore`    | Array  |                                        ignore a certain set of fields from an object. This can be useful for checking an entire object and ignoring only the mutable (e.g. time-changing) fields                                        |
 
-> **NOTE:** > \- _hint_ attribute will be ignored if the _name_ attribute is used.
+> **NOTE:**
+>
+> \- _hint_ attribute will be ignored if the _name_ attribute is used.
+>
 > \- _folder_ attribute will be ignored if the _snapshotPath_ attribute is used.
+>
 > \- Two snaps with the same name within the same snapshot file cannot exist. Therefore, if one wants to use the **matchSnapshot** twice inside a single `it` the _hint_, _name_, _folder_ or _snapshotPath_ argument will have to be used.
 
 #### Example
@@ -153,7 +157,9 @@ mocha --update
 ```
 
 > **NOTE:**
+>
 > \- Tests or snapshots that were not executed will not be updated.
+>
 > \- If a test or snapshot name has been changed, a new snapshot will be created. When running the tests using the `--update` flag, only the new ones will be updated.
 
 # Recommendations
