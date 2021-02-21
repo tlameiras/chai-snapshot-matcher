@@ -1,0 +1,2 @@
+exports["chai-snapshot-matcher use the folder attribute to save the snapshots in nested folders (util to execute the same tests in different environments)"] = "stg environment";
+
