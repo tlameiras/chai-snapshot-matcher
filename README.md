@@ -40,7 +40,7 @@ require('chai-snapshot-matcher');
 mocha --require chai-snapshot-matcher
 ```
 
-## .matchSnapchot(this [, config])
+## .matchSnapshot(this [, config])
 
 matchSnapshot is a customized chai matcher that creates a snapshot file on the first test run. On subsequent test runs, chai will compare the object that is being expected with the previous snapshot. If they match, the test will pass. If they don't match, the test will fail. If tests are failing due to a change decision implementation (and not a bug), snapshots needs to be updated (check how on **Update Snapshots** chapter).
 
