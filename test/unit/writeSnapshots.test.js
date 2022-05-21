@@ -1,3 +1,4 @@
+/* eslint-disable mocha/no-setup-in-describe */
 const { expect } = require('chai');
 const path = require('path');
 const fs = require('fs');
@@ -8,91 +9,26 @@ const ENV_VARS = process.argv;
 const currentPath = __dirname;
 
 describe('writeSnapshots', function () {
-  before(function () {
-    this.folderPath = path.join(currentPath, '__snapshots__', 'writeSnapshots');
-    this.defaultsFolderPath = path.join(this.folderPath, 'defaults');
+  describe('when a single or multiple snapshots are provided', function () {
+    const folderPath = path.join(currentPath, '__snapshots__', 'writeSnapshots');
+    const defaultsFolderPath = path.join(folderPath, 'defaults');
+    const sourceEmptyFile = path.join(defaultsFolderPath, 'emptyFile.snap');
+    const sourceSnapshotFile = path.join(defaultsFolderPath, 'snapshotFile.snap');
 
-    this.sourceEmptyFile = path.join(this.defaultsFolderPath, 'emptyFile.snap');
+    const single = {
+      newFile: path.join(folderPath, 'newFile_single.snap'),
+      emptyFile: path.join(folderPath, 'emptyFile_single.snap'),
+      snapshotFile: path.join(folderPath, 'snapshotFile_single.snap'),
+      baselineFile: path.join(defaultsFolderPath, 'baselineSingleSnapshot.snap'),
+      snaps: { 'snapshot title': 'Single snapshot test' },
+    };
 
-    this.sourceSnapshotFile = path.join(this.defaultsFolderPath, 'snapshotFile.snap');
-  });
-
-  describe('when a single snapshot is provided', function () {
-    before(function () {
-      this.newFile = path.join(this.folderPath, 'newFile_single.snap');
-
-      this.emptyFile = path.join(this.folderPath, 'emptyFile_single.snap');
-
-      this.snapshotFile = path.join(this.folderPath, 'snapshotFile_single.snap');
-
-      this.baselineFile = path.join(this.defaultsFolderPath, 'baselineSingleSnapshot.snap');
-
-      fs.copyFileSync(this.sourceEmptyFile, this.emptyFile);
-      fs.copyFileSync(this.sourceSnapshotFile, this.snapshotFile);
-
-      this.snaps = { 'snapshot title': 'Single snapshot test' };
-    });
-
-    describe('and the snapshotFilePath points to an non-existent file', function () {
-      it('creates the file and writes the snapshot', function () {
-        writeSnapshots(this.snaps, this.newFile);
-
-        expect(fs.existsSync(this.newFile)).to.be.true;
-
-        const baselineFile = require(this.baselineFile);
-        const newFile = require(this.newFile);
-
-        expect(newFile).to.eql(baselineFile);
-      });
-    });
-
-    describe('and the snapshotFilePath points to an empty file', function () {
-      it('writes the snapshot on the empty file', function () {
-        writeSnapshots(this.snaps, this.emptyFile);
-
-        expect(fs.existsSync(this.emptyFile)).to.be.true;
-
-        const baselineFile = require(this.baselineFile);
-        const emptyFile = require(this.emptyFile);
-
-        expect(emptyFile).to.eql(baselineFile);
-      });
-    });
-
-    describe('and the snapshotFilePath points to an existing file with other snapshots', function () {
-      it('writes the snapshot over the existing ones', function () {
-        writeSnapshots(this.snaps, this.snapshotFile);
-
-        expect(fs.existsSync(this.snapshotFile)).to.be.true;
-
-        const baselineFile = require(this.baselineFile);
-        const snapshotFile = require(this.snapshotFile);
-
-        expect(snapshotFile).to.eql(baselineFile);
-      });
-    });
-
-    after(function () {
-      fs.unlinkSync(this.emptyFile);
-      fs.unlinkSync(this.snapshotFile);
-      fs.unlinkSync(this.newFile);
-    });
-  });
-
-  describe('when an object with multiple snapshots is provided', function () {
-    before(function () {
-      this.newFile = path.join(this.folderPath, 'newFile_multiple.snap');
-
-      this.emptyFile = path.join(this.folderPath, 'emptyFile_multiple.snap');
-
-      this.snapshotFile = path.join(this.folderPath, 'snapshotFile_multiple.snap');
-
-      this.baselineFile = path.join(this.defaultsFolderPath, 'baselineMultipleSnapshots.snap');
-
-      fs.copyFileSync(this.sourceEmptyFile, this.emptyFile);
-      fs.copyFileSync(this.sourceSnapshotFile, this.snapshotFile);
-
-      this.snaps = {
+    const multiple = {
+      newFile: path.join(folderPath, 'newFile_multiple.snap'),
+      emptyFile: path.join(folderPath, 'emptyFile_multiple.snap'),
+      snapshotFile: path.join(folderPath, 'snapshotFile_multiple.snap'),
+      baselineFile: path.join(defaultsFolderPath, 'baselineMultipleSnapshots.snap'),
+      snaps: {
         'first snapshot': {
           a: {
             b: 1,
@@ -101,52 +37,84 @@ describe('writeSnapshots', function () {
           d: 3,
         },
         'second snapshot': [1, 2, 3, 4, 5],
-      };
+      },
+    };
+
+    before(function () {
+      fs.copyFileSync(sourceEmptyFile, single.emptyFile);
+      fs.copyFileSync(sourceSnapshotFile, single.snapshotFile);
+
+      fs.copyFileSync(sourceEmptyFile, multiple.emptyFile);
+      fs.copyFileSync(sourceSnapshotFile, multiple.snapshotFile);
     });
 
     describe('and the snapshotFilePath points to an non-existent file', function () {
-      it('creates the file and writes the snapshot', function () {
-        writeSnapshots(this.snaps, this.newFile);
+      const runs = [
+        { it: 'creates the file and writes the single snapshot', option: single },
+        { it: 'creates the file and writes the multiple snapshots', option: multiple },
+      ];
 
-        expect(fs.existsSync(this.newFile)).to.be.true;
+      runs.forEach(function (run) {
+        it(run.it, function () {
+          writeSnapshots(run.option.snaps, run.option.newFile);
 
-        const baselineFile = require(this.baselineFile);
-        const newFile = require(this.newFile);
+          expect(fs.existsSync(run.option.newFile)).to.be.true;
 
-        expect(newFile).to.eql(baselineFile);
+          const baselineFile = require(run.option.baselineFile);
+          const newFile = require(run.option.newFile);
+
+          expect(newFile).to.eql(baselineFile);
+        });
       });
     });
 
     describe('and the snapshotFilePath points to an empty file', function () {
-      it('writes the snapshot on the empty file', function () {
-        writeSnapshots(this.snaps, this.emptyFile);
+      const runs = [
+        { it: 'writes the single snapshot on the empty file', option: single },
+        { it: 'writes the multiple snapshots on the empty file', option: multiple },
+      ];
 
-        expect(fs.existsSync(this.emptyFile)).to.be.true;
+      runs.forEach(function (run) {
+        it(run.it, function () {
+          writeSnapshots(run.option.snaps, run.option.emptyFile);
 
-        const baselineFile = require(this.baselineFile);
-        const emptyFile = require(this.emptyFile);
+          expect(fs.existsSync(run.option.emptyFile)).to.be.true;
 
-        expect(emptyFile).to.eql(baselineFile);
+          const baselineFile = require(run.option.baselineFile);
+          const emptyFile = require(run.option.emptyFile);
+
+          expect(emptyFile).to.eql(baselineFile);
+        });
       });
     });
 
     describe('and the snapshotFilePath points to an existing file with other snapshots', function () {
-      it('writes the snapshot over the existing ones', function () {
-        writeSnapshots(this.snaps, this.snapshotFile);
+      const runs = [
+        { it: 'writes the single snapshot over the existing ones', option: single },
+        { it: 'writes the multiple snapshos over the existing ones', option: multiple },
+      ];
 
-        expect(fs.existsSync(this.snapshotFile)).to.be.true;
+      runs.forEach(function (run) {
+        it(run.it, function () {
+          writeSnapshots(run.option.snaps, run.option.snapshotFile);
 
-        const baselineFile = require(this.baselineFile);
-        const snapshotFile = require(this.snapshotFile);
+          expect(fs.existsSync(run.option.snapshotFile)).to.be.true;
 
-        expect(snapshotFile).to.eql(baselineFile);
+          const baselineFile = require(run.option.baselineFile);
+          const snapshotFile = require(run.option.snapshotFile);
+
+          expect(snapshotFile).to.eql(baselineFile);
+        });
       });
     });
 
     after(function () {
-      fs.unlinkSync(this.emptyFile);
-      fs.unlinkSync(this.snapshotFile);
-      fs.unlinkSync(this.newFile);
+      fs.unlinkSync(single.emptyFile);
+      fs.unlinkSync(single.snapshotFile);
+      fs.unlinkSync(single.newFile);
+      fs.unlinkSync(multiple.emptyFile);
+      fs.unlinkSync(multiple.snapshotFile);
+      fs.unlinkSync(multiple.newFile);
     });
   });
 
