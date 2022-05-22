@@ -6,6 +6,8 @@ chai-snapshot-matcher is a [node](https://nodejs.org/en/) library developed to o
 
 ## Why Snapshot Testing
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/01196299c0524d46b887849f649d3111)](https://app.codacy.com/gh/tlameiras/chai-snapshot-matcher?utm_source=github.com&utm_medium=referral&utm_content=tlameiras/chai-snapshot-matcher&utm_campaign=Badge_Grade_Settings)
+
 Snapshot tests are a very useful tool whenever you want to make sure your API our UI does not change unexpectedly.
 
 A typical snapshot test case for an API execute a http request, takes a snapshot to the requested response and then compares it to a reference snapshot file stored alongside the test. The test will fail if the two snapshots do not match: either the change is unexpected or the reference snapshot needs to be updated to the new version.
