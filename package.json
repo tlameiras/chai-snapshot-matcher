@@ -5,9 +5,10 @@
   "main": "./src/index.js",
   "scripts": {
     "lint": "eslint .  --ext .js",
-    "test": "mocha 'test/**/*.test.js' --timeout 5000",
-    "unit-tests": "mocha 'test/unit/*.test.js' --timeout 5000",
-    "smoke-tests": "mocha 'test/smokes/*.test.js' --timeout 5000"
+    "test": "nyc --reporter=lcov mocha 'test/**/*.test.js' --timeout 5000",
+    "unit-tests": "nyc --reporter=lcov mocha 'test/unit/*.test.js' --timeout 5000",
+    "smoke-tests": "nyc --reporter=lcov mocha 'test/smokes/*.test.js' --timeout 5000",
+    "coverage": "bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r ./coverage/lcov.info"
   },
   "keywords": [
     "chai",
@@ -35,7 +36,9 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-mocha": "^8.0.0",
     "eslint-plugin-prettier": "^3.1.4",
+    "install": "^0.13.0",
     "mocha": "^7.1.1",
+    "nyc": "^15.1.0",
     "prettier": "^2.1.2"
   },
   "dependencies": {
