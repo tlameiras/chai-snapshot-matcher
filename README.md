@@ -4,6 +4,7 @@
 
 <p align="center">
     <a href="https://www.codacy.com/gh/tlameiras/chai-snapshot-matcher/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tlameiras/chai-snapshot-matcher&amp;utm_campaign=Badge_Grade"><img src="https://app.codacy.com/project/badge/Grade/043c18cb9e324e89843b388df0243ac3"/></a>
+    <a href="https://www.codacy.com/gh/tlameiras/chai-snapshot-matcher/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tlameiras/chai-snapshot-matcher&amp;utm_campaign=Badge_Coverage"><img src="https://app.codacy.com/project/badge/Coverage/043c18cb9e324e89843b388df0243ac3"/></a>
     <img alt="npm" src="https://img.shields.io/npm/dy/chai-snapshot-matcher">
     <img alt="npm" src="https://img.shields.io/npm/v/chai-snapshot-matcher">
 </p>
