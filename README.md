@@ -2,11 +2,15 @@
   <img src="https://github.com/tlameiras/chai-snapshot-matcher/blob/master/logo/logo.png?raw=true" alt="chai-snapshot-matcher"/>
 </h1>
 
+<p align="center">
+    <a href="https://www.codacy.com/gh/tlameiras/chai-snapshot-matcher/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tlameiras/chai-snapshot-matcher&amp;utm_campaign=Badge_Grade"><img src="https://app.codacy.com/project/badge/Grade/043c18cb9e324e89843b388df0243ac3"/></a>
+    <img alt="npm" src="https://img.shields.io/npm/dy/chai-snapshot-matcher">
+    <img alt="npm" src="https://img.shields.io/npm/v/chai-snapshot-matcher">
+</p>
+
 chai-snapshot-matcher is a [node](https://nodejs.org/en/) library developed to offer the [jest](https://jestjs.io/) snapshot testing features to [mocha](https://mochajs.org/) and [chai](https://www.chaijs.com/) users.
 
 ## Why Snapshot Testing
-
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/01196299c0524d46b887849f649d3111)](https://app.codacy.com/gh/tlameiras/chai-snapshot-matcher?utm_source=github.com&utm_medium=referral&utm_content=tlameiras/chai-snapshot-matcher&utm_campaign=Badge_Grade_Settings)
 
 Snapshot tests are a very useful tool whenever you want to make sure your API our UI does not change unexpectedly.
 
