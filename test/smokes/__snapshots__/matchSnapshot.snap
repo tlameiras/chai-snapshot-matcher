@@ -2,7 +2,7 @@ exports["chai-snapshot-matcher use matchSnapshot to expect numbers"] = 1;
 
 exports["chai-snapshot-matcher use matchSnapshot to expect booleans"] = true;
 
-exports["chai-snapshot-matcher use matchSnapshot to expect strings"] = "Hello World!";
+exports["chai-snapshot-matcher use matchSnapshot to expect strings"] = `Hello World!`;
 
 exports["chai-snapshot-matcher use matchSnapshot to expect arrays"] = [
 	1,
@@ -18,17 +18,25 @@ exports["chai-snapshot-matcher use matchSnapshot to expect objects"] = {
 	"d": 3
 };
 
-exports["chai-snapshot-matcher use the hint attribute to customize the snapshot title (go check the __snapshots__ folder)"] = "custom name";
+exports["chai-snapshot-matcher use the hint attribute to customize the snapshot title (go check the __snapshots__ folder)"] = `custom name`;
 
 exports["chai-snapshot-matcher use the hint attribute to have more than one matchSnapshot per it (value)"] = 10;
 
-exports["chai-snapshot-matcher use the hint attribute to have more than one matchSnapshot per it (type)"] = "number";
+exports["chai-snapshot-matcher use the hint attribute to have more than one matchSnapshot per it (type)"] = `number`;
 
-exports["Snapshot with a fully customised titled (doesn't use the 'describe' or 'it' titles)"] = "fully customised title";
+exports["Snapshot with a fully customised titled (doesn't use the 'describe' or 'it' titles)"] = `fully customised title`;
 
 exports["chai-snapshot-matcher use the ignore attribute to compare partial objects (by ignoring part of the fields)"] = {
 	"a": {
 		"b": 1
 	}
 };
+
+exports["chai-snapshot-matcher use matchSnapshot to expect multiline strings"] = `{
+  \"a\": {
+    \"b\": 1,
+    \"c\": 2
+  },
+  \"d\": 3
+}`;
 
