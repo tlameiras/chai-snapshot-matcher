@@ -38,6 +38,18 @@ describe('chai-snapshot-matcher', function () {
     expect(testVar).to.matchSnapshot(this);
   });
 
+  it('use matchSnapshot to expect multiline strings', function () {
+    const testVar = {
+      a: {
+        b: 1,
+        c: 2,
+      },
+      d: 3,
+    };
+
+    expect(JSON.stringify(testVar, null, 2)).to.matchSnapshot(this);
+  });
+
   it('use the hint attribute to customize the snapshot title', function () {
     const testVar = 'custom name';
 
